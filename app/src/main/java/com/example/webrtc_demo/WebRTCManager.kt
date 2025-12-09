@@ -247,4 +247,9 @@ class WebRTCManager(
         log("Message Sent: $msg")
     }
 
+    fun close() {
+        dataChannel?.close()
+        pc?.close()
+    }
+
 }

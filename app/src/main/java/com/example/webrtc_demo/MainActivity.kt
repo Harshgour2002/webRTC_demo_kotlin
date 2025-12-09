@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private var myId: String? = null
+    private val signalingUrl = "wss://limitedly-hysterogenic-carla.ngrok-free.dev/ws/signal"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,17 +69,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        signalClient.close()
+        rtcManager.close()
+    }
+
 
     private fun startSignaling() {
         tvStatus.text = "Connecting to server..."
 
 
 // create signal client
-        signalClient = SignalClient("ws://192.168.31.41:8080/signal") // emulator: use host machine
-        signalClient.connect { text ->
-            Log.d("SignalClient", "recv: $text")
-            runOnUiThread { handleSignalMessage(text) }
-        }
+        signalClient = SignalClient(signalingUrl)
+        signalClient.connect(
+            onMessage = { text ->
+                Log.d("SignalClient", "recv: $text")
+                runOnUiThread { handleSignalMessage(text) }
+            },
+            onFailure = {
+                runOnUiThread { showToast("Failed to connect to signaling server") }
+            }
+        )
 
 
 // give the signal client to rtc manager
@@ -121,11 +134,15 @@ class MainActivity : AppCompatActivity() {
 
                 }
                 "error" -> {
-                    Toast.makeText(this, json.optString("message"), Toast.LENGTH_SHORT).show()
+                    showToast(json.optString("message"))
                 }
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
