@@ -15,7 +15,7 @@
           <targets>
             <Target type="DEFAULT_BOOT">
               <handle>
-                <DeviceId pluginId="PhysicalDevice" identifier="serial=RZ8N507LJMM" />
+                <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\harsh\.android\avd\Pixel_3a_2.avd" />
               </handle>
             </Target>
             <Target type="DEFAULT_BOOT">

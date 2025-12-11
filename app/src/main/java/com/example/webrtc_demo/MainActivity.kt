@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private val signalingUrl = "wss://limitedly-hysterogenic-carla.ngrok-free.dev/ws/signal"
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
