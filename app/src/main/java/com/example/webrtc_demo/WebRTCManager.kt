@@ -133,6 +133,7 @@ class WebRTCManager(
         config.enableDscp = true
 
         log("Creating new PeerConnection")
+
         pc = factory.createPeerConnection(config, object : PeerConnection.Observer {
             override fun onIceCandidate(candidate: IceCandidate) {
                 if (isCleaningUp) {
