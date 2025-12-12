@@ -27,13 +27,14 @@ class MainActivity : AppCompatActivity() {
 
 
     private var myId: String? = null
-    private val signalingUrl = "wss://limitedly-hysterogenic-carla.ngrok-free.dev/ws/signal"
+    private val signalingUrl = "wss://hildred-relativistic-vinnie.ngrok-free.dev/ws/signal"
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        supportActionBar?.hide()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
