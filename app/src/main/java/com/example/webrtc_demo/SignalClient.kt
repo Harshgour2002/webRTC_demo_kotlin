@@ -26,7 +26,7 @@ class SignalClient(private val url: String) {
                 onMessage(text)
             }
 
-            //aslkdjfas;lkdjf
+
 
             override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
                 Log.e("SignalClient", "WebSocket Failure: ${t.message}")
